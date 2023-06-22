@@ -17,5 +17,25 @@
 				now()			
 			)
 	</insert>
-
+	<select id="detail" resultType="BoardVO">
+		SELECT
+			name,
+			subject,
+			content,
+			view_cnt AS viewCnt,
+			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
+		FROM
+			board
+		WHERE
+			idx = #{idx}
+	</select>
+	
+	<update id="update" parameterType="map">
+		UPDATE board SET
+			subject = #{subject},
+			content = #{content},
+			update_date = now()
+		WHERE
+			idx = #{idx}
+	</update>
 </mapper>

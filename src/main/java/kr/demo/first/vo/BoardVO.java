@@ -13,7 +13,7 @@ public class BoardVO {
 	private String password;
 	private String subject;
 	private String content;
-	private String view_cnt;
-	private String create_date;
-	private String update_date;
+	private String viewCnt;
+	private String createDate;
+	private String updateDate;
 }
