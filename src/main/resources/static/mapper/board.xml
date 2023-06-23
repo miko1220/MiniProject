@@ -38,4 +38,10 @@
 		WHERE
 			idx = #{idx}
 	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM board 
+			WHERE
+				idx = #{idx}
+	</delete>
 </mapper>

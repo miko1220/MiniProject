@@ -37,27 +37,29 @@
         <section id="insertBoard">
             <div class="container px-4">
 				<div id="board" align="center">
-					<input type="hidden" id="idx" name="idx" th:value="${detailContent.idx}">
-					<div class="mb-3" style="text-align: right;">
-						<input type="text" class="form-control" id="updateDate" th:value="${detailContent.updateDate}" readonly="readonly">
-					</div>
-					<div class="row">
-						<div class="col">
-							<input type="text" class="form-control" id="name" name="name" aria-label="name" th:value="${detailContent.name}"> 
+					<form action="updateOk" method="post">
+						<input type="hidden" id="idx" name="idx" value="2">
+						<div class="mb-3" style="text-align: right;">
+							<input type="text" class="form-control" id="updateDate" th:value="${detailContent.updateDate}" readonly="readonly">
 						</div>
-						<div class="col">
-							<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" aria-label="password" required="required">
+						<div class="row">
+							<div class="col">
+								<input type="text" class="form-control" id="name" name="name" aria-label="name" th:value="${detailContent.name}"> 
+							</div>
+							<div class="col">
+								<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" aria-label="password" required="required">
+							</div>
 						</div>
-					</div>
-					<p>
-					<div class="mb-3">
-						<input type="text" class="form-control" id="subject" name="subject" th:value="${detailContent.subject}" > 
-					</div>
-					<div class="mb-3">
-						<textarea class="form-control" id="content" name="content" required="required" rows="10" th:value="${detailContent.content}" th:text="${detailContent.content}"></textarea>
-					</div>
-					<input type="button" class="btn btn-dark" value="취소하기" id="cancleBtn" name="cancleBtn" onclick="location='/home'">
-					<input type="button" class="btn btn-primary" id="boardUpdate" name="boardAdd" value="저장하기">
+						<p>
+						<div class="mb-3">
+							<input type="text" class="form-control" id="subject" name="subject" th:value="${detailContent.subject}" > 
+						</div>
+						<div class="mb-3">
+							<textarea class="form-control" id="content" name="content" required="required" rows="10" th:value="${detailContent.content}" th:text="${detailContent.content}"></textarea>
+						</div>
+						<input type="button" class="btn btn-dark" value="취소하기" id="cancleBtn" name="cancleBtn" onclick="location='/home'">
+						<input type="submit" class="btn btn-primary" id="boardUpdate" name="boardAdd" value="저장하기">
+					</form>
 				</div>
             </div>
         </section>
@@ -72,52 +74,4 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
-    <script type="text/javascript">
-    
-    $(function(){
-	    	$('#boardUpdate').on('click', function(){
-	    		var content = $('#content').val();
-	    		if(content==null||content.trim().length==0){
-	    			$('#content').attr('style','border-color: #dc3545;');
-	    				$('#content').val('');
-	    				$('#content').html('<div id="warning" class="alert alert-danger" role="alert">본문을 입력해주세요</div>');
-	    				$('#content').focus();
-	    		}else{
-	    			var result = window.confirm('작성한 내용으로 수정하시겠습니까?');
-	    			if(result){
-	    				alert('정상적으로 처리되었습니다.');
-	    				var subjectVal = $('#subject').val();
-	    				var contentVal = $('#content').val();
-	    				var updateDateVal = $('#updateDate').val();
-	    				$.ajax({
-	    					url:"/update",
-	    					dateType: "text",
-	    					type: "post",
-	    					contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-	    					data:{
-	    						subject : subjectVal,
-	    						content : contentVal
-	    					},
-	    					success: function(data){
-	    						location.href='/home';
-	    					},
-	    					error: function(data){
-	    						alert("Error");
-	    					}
-	    				});
-	    			}else if(!result){
-	    				alert('취소되었습니다.');
-	    				return false;
-	    			}
-	    		}
-	    	});
-	    });
-    
-	    $('#content').on('input',function(){
-	    	if($('#content').val() !=''){
-	    		$('#content').attr('style', 'width:100%;');
-				$('#warning').remove();
-	    	}
-	    });
-    </script>
-</html>
+ </html>
