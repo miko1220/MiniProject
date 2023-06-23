@@ -5,12 +5,15 @@ import java.util.Map;
 import kr.demo.first.vo.BoardVO;
 
 public interface BoardService {
-	// 추가하할 메서드
+	// 글 추가하기
 	void insert(Map<String, String> insertMap) throws Exception;
 	
-	// 수정하할 메서드
+	// 글 수정하기
 	void update(Map<String, String> updateMap) throws Exception;
 	
-	// 상세정보 조회할 메서드
+	// 상세정보 조회하기
 	BoardVO detail (int idx) throws Exception;
+	
+	// 글 삭제하기
+	void delete(int idx) throws Exception;
 }

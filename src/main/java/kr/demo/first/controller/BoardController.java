@@ -1,5 +1,6 @@
 package kr.demo.first.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +37,18 @@ public class BoardController {
 		return "update";
 	}
 	
-	@PostMapping("/update")
-	public String update(@RequestParam Map<String, String> updateMap, Model model) throws Exception{
-		log.info("update에서 남어온 값(컨트롤러) : {}", updateMap);
-		boardService.update(updateMap);
-		return "home";
+	@PostMapping("/updateOk")
+	public String update(@RequestParam(value = "idx") int idx, @RequestParam(value = "name") String name, @RequestParam(value = "subject") String subject, @RequestParam(value = "content") String content, Model model) throws Exception {
+	    Map<String, String> updateMap = new HashMap<>();
+	    updateMap.put("idx", String.valueOf(idx));
+	    updateMap.put("name", name);
+	    updateMap.put("subject", subject);
+	    updateMap.put("content", content);
+	    
+	    log.info("update에서 남어온 값(컨트롤러) : {}", updateMap);
+	    boardService.update(updateMap);
+	    
+	    return "home";
 	}
 	
 	@GetMapping(value="/detail")
@@ -51,5 +59,11 @@ public class BoardController {
 		model.addAttribute("detailContent", boardVO);
 		log.info("detail에서 메서드 호출(컨트롤러) : {}", boardVO);
 		return "detail";
+	}
+	@PostMapping("/deleteOk")
+	public String delete(@RequestParam(value="idx") int idx) throws Exception{
+		log.info("delete에서 넘어온 값(컨트롤러) : {}", idx);
+		boardService.delete(idx);
+		return "home";
 	}
 }

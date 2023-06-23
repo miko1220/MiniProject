@@ -46,4 +46,14 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return boardVO;
 	}
+	
+	@Override
+	public void delete (int idx) {
+		log.info("delete에서 넘어온 값(서비스) : {}", idx);
+		try {
+			boardMapper.delete(idx);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
