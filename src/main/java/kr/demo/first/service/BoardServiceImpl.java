@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.demo.first.mapper.BoardMapper;
 import kr.demo.first.vo.BoardVO;
+import kr.demo.first.vo.PagingVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Service("BoardService")
@@ -55,5 +56,18 @@ public class BoardServiceImpl implements BoardService {
 		}catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	@Override
+	public PagingVO<BoardVO> selectList(int currentPage, int pageSize, int blockSize){
+		PagingVO<BoardVO> pagingVO = null;
+		try {
+			int totalCount = boardMapper.selectCount();
+			pagingVO = new PagingVO<>(totalCount, currentPage, pageSize, blockSize);
+			pagingVO.setList(boardMapper.selectList(pagingVO.getStartNo(), pagingVO.getPageSize()));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		log.info("selectList 실행한 값 : {}", pagingVO.getList());
+		return pagingVO;
 	}
 }
