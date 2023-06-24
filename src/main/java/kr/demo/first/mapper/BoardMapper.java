@@ -1,6 +1,7 @@
 package kr.demo.first.mapper;
 
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -20,5 +21,11 @@ public interface BoardMapper {
 	
 	// 글 삭제
 	void delete(int idx) throws Exception;
+	
+	// 모든 글 표시
+	List<BoardVO> selectList(int startNo, int pageSize) throws Exception;
+	
+	// 글 개수
+	int selectCount () throws Exception;
 }
 

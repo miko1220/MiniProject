@@ -1,8 +1,10 @@
 package kr.demo.first.service;
 
+import java.util.List;
 import java.util.Map;
 
 import kr.demo.first.vo.BoardVO;
+import kr.demo.first.vo.PagingVO;
 
 public interface BoardService {
 	// 글 추가하기
@@ -16,4 +18,8 @@ public interface BoardService {
 	
 	// 글 삭제하기
 	void delete(int idx) throws Exception;
+	
+	// 모든 글 표시하기
+	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
+	
 }

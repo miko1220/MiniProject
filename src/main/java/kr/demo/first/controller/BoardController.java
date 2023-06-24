@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.demo.first.service.BoardService;
 import kr.demo.first.vo.BoardVO;
+import kr.demo.first.vo.PagingVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -64,6 +65,18 @@ public class BoardController {
 	public String delete(@RequestParam(value="idx") int idx) throws Exception{
 		log.info("delete에서 넘어온 값(컨트롤러) : {}", idx);
 		boardService.delete(idx);
+		return "home";
+	}
+	@GetMapping(value="/home")
+	public String selectList(@RequestParam(defaultValue = "1") int c, @RequestParam(defaultValue = "10") int p, @RequestParam(defaultValue = "10")
+			int b, Model model) throws Exception{
+		
+		PagingVO<BoardVO> pagingVO = boardService.selectList(c, p, b);
+		model.addAttribute("selectList", pagingVO.getList());
+		model.addAttribute("info", pagingVO.getInfo());
+		model.addAttribute("pageList", pagingVO.getPageList());
+		
+		log.info("selectList 메서드 호출(컨트롤러) : {}", pagingVO.getList());
 		return "home";
 	}
 }

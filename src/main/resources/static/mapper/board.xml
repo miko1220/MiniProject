@@ -29,7 +29,23 @@
 		WHERE
 			idx = #{idx}
 	</select>
-	
+	<select id="selectList" resultType="BoardVO" parameterType="int">
+		SELECT
+			idx,
+			name,
+			subject,
+			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
+		FROM
+			board
+		ORDER BY 
+			update_date DESC
+	</select>
+	<select id="selectCount" resultType="int">
+		SELECT
+			 count(*) 
+		FROM
+			board 
+	</select>
 	<update id="update" parameterType="map">
 		UPDATE board SET
 			subject = #{subject},

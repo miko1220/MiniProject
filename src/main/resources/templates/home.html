@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -33,11 +33,30 @@
                 <a class="btn btn-lg btn-light" href="/insert">작성해보기</a>
             </div>
         </header>
-        <!-- Contact section-->
-        <section id="contact">
-
-        </section>
-        <!-- Footer-->
+	<!-- Contact section-->
+	<section id="contact">
+		<div class="container px-4" th:text="${info}">
+			<table class="table">
+				<thead>
+					<tr class="table-primary">
+						<th scope="col" style="width: 8%; text-align: center;">글번호</th>
+						<th scope="col" style="text-align: center; width: 25%;">작성자</th>
+						<th scope="col" style="text-align: center;">제목</th>
+						<th scope="col" style="text-align: center; width: 25%;">작성일자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="selectList : ${selectList}" th:onclick="|location.href='@{/detailContent(idx=${selectList.idx})}'|" style="cursor: pointer;">
+						<th scope="row" style="text-align: center;" th:text="${selectList.idx}">1</th>
+						<td th:text="${selectList.name}"></td>
+						<td th:text="${selectList.subject}"></td>
+						<td th:text="${selectList.updateDate}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</section>
+	<!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
