@@ -41,26 +41,26 @@
         </header>
         <!-- Contact section-->
         <section id="contact">
-            <div class="container px-4">
-				<form action="/deleteOk" method="post">
-					<input type="hidden" id="idx" name="idx" value="3">
-					<div id="board" align="center">
-						<div class="list-group">
-							<ul class="list-group">
-				 				<li class="list-group-item" style="height: 40px; text-align: left; font-size: 15pt; font-weight: bold;" id="name">[[${detailContent.name}]]
-				 					<p style="display:inline; font-weight: normal;">님이 작성한 글일니다.</p> 
-				 				 <li class="list-group-item" id="updateDate">작성일자 : [[${detailContent.updateDate}]]</li> 	
-				 				<li class="list-group-item" style="height: 40px ;" id="subject">[[${detailContent.subject}]]</li>
-				 				<li class="list-group-item" style="height: 300px;" id="content"> [[${detailContent.content}]]</li>
-				  			</ul>
-			  			</div>
-			  			<br/>
-				  			<input type="submit" class="btn btn-danger" id="deleteBtn" name="deleteBtn" value="삭제하기">
-				  			<input type="button" class="btn btn-primary" value="수정하기" onclick="location='/update'">
-					</div>
-			  	</form>
-            </div>
-        </section>
+			<div class="container px-4">
+			    <form action="/deleteOk" method="post">
+			        <input type="hidden" id="idx" name="idx" th:value="${detailContent.idx}">
+			        <div id="board" align="center">
+			            <div class="list-group">
+			                <ul class="list-group">
+			                    <li class="list-group-item" style="height: 40px; text-align: left; font-size: 15pt; font-weight: bold;" id="name">[[${detailContent.name}]]
+			                        <p style="display:inline; font-weight: normal;">님이 작성한 글일니다。</p>
+			                    <li class="list-group-item" id="updateDate" th:text="${detailContent.updateDate}"></li>
+			                    <li class="list-group-item" style="height: 40px ;" id="subject" th:text="${detailContent.subject}"></li>
+			                    <li class="list-group-item" style="height: 300px;" id="content" th:text="${detailContent.content}"></li>
+			                </ul>
+			            </div>
+			            <br/>
+			            <input type="submit" class="btn btn-danger" id="deleteBtn" name="deleteBtn" value="삭제하기">
+			            <input type="button" class="btn btn-primary" value="수정하기" th:onclick="|location.href='@{/update(idx=${detailContent.idx})}'|">
+			        </div>
+			    </form>
+			</div>        
+		</section>
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container px-4"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
