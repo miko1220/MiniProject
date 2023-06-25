@@ -35,7 +35,9 @@
         </header>
 	<!-- Contact section-->
 	<section id="contact">
-		<div class="container px-4" th:text="${info}">
+		<div class="container px-4">
+			<div  th:text="${info}" style="text-align: right;"></div>
+			<p/>
 			<table class="table">
 				<thead>
 					<tr class="table-primary">
@@ -46,11 +48,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="selectList : ${selectList}" th:onclick="|location.href='@{/detailContent(idx=${selectList.idx})}'|" style="cursor: pointer;">
-						<th scope="row" style="text-align: center;" th:text="${selectList.idx}">1</th>
-						<td th:text="${selectList.name}"></td>
-						<td th:text="${selectList.subject}"></td>
-						<td th:text="${selectList.updateDate}"></td>
+					<tr th:each="selectList : ${selectList}" th:onclick="|location.href='@{/detail(idx=${selectList.idx})}'|" style="cursor: pointer;">
+						<th scope="row" style="text-align: center;" th:text="${selectList.idx}"></th>
+						<td th:text="${selectList.name}"  style="text-align: center;"></td>
+						<td th:text="${selectList.subject}"  style="text-align: center;"></td>
+						<td th:text="${selectList.updateDate}" style="text-align: center;"></td>
 					</tr>
 				</tbody>
 			</table>

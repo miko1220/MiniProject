@@ -38,7 +38,7 @@
             <div class="container px-4">
 				<div id="board" align="center">
 					<form action="updateOk" method="post">
-						<input type="hidden" id="idx" name="idx" value="2">
+						<input type="hidden" id="idx" name="idx" th:value="${detailContent.idx}" >
 						<div class="mb-3" style="text-align: right;">
 							<input type="text" class="form-control" id="updateDate" th:value="${detailContent.updateDate}" readonly="readonly">
 						</div>
