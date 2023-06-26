@@ -1,6 +1,5 @@
 package kr.demo.first.service;
 
-import java.util.List;
 import java.util.Map;
 
 import kr.demo.first.vo.BoardVO;
