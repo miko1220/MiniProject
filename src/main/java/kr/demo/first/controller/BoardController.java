@@ -1,6 +1,5 @@
 package kr.demo.first.controller;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,9 @@ public class BoardController {
 	}
 
 	@GetMapping("/update")
-	public String update(@RequestParam(value="idx") int idx, Model model) throws Exception{
+	public String update(@RequestParam int idx, Model model) throws Exception{
 		BoardVO boardVO = null;
-		log.info("update에서 남어온 값(컨트롤러) : {}", idx);
+		log.info("detail에서 남어온 값(컨트롤러) : {}", idx);
 		boardVO = boardService.detail(idx);
 		model.addAttribute("detailContent", boardVO);
 		log.info("boardVO 메서드 호출(컨트롤러) : {}", boardVO);
@@ -39,30 +38,23 @@ public class BoardController {
 	}
 	
 	@PostMapping("/updateOk")
-	public String update(@RequestParam(value = "idx") int idx, @RequestParam(value = "name") String name, @RequestParam(value = "subject") String subject, @RequestParam(value = "content") String content, Model model) throws Exception {
-	    Map<String, String> updateMap = new HashMap<>();
-	    updateMap.put("idx", String.valueOf(idx));
-	    updateMap.put("name", name);
-	    updateMap.put("subject", subject);
-	    updateMap.put("content", content);
-	    
+	public String update(@RequestParam Map<String, String> updateMap, Model model) throws Exception {
 	    log.info("update에서 남어온 값(컨트롤러) : {}", updateMap);
 	    boardService.update(updateMap);
-	    
 	    return "home";
 	}
 	
 	@GetMapping(value="/detail")
-	public String detail(@RequestParam(value="idx") int idx, Model model) throws Exception{
+	public String detail(@RequestParam int idx, Model model) throws Exception {
 		BoardVO boardVO = null;
-		log.info("detail에서 남어온 값(컨트롤러) : {}", idx);
+		log.info("detail에서 넘겨준 idx(컨트롤러) : {}", idx);
 		boardVO = boardService.detail(idx);
 		model.addAttribute("detailContent", boardVO);
 		log.info("detail에서 메서드 호출(컨트롤러) : {}", boardVO);
 		return "detail";
 	}
 	@PostMapping("/deleteOk")
-	public String delete(@RequestParam(value="idx") int idx) throws Exception{
+	public String delete(@RequestParam int idx) throws Exception{
 		log.info("delete에서 넘어온 값(컨트롤러) : {}", idx);
 		boardService.delete(idx);
 		return "home";

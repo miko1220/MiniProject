@@ -28,8 +28,8 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public void update(Map<String, String> updateMap) {
+		log.info("update에서 넘어온 값(서비스) :{} ", updateMap);
 		try {
-			log.info("update에서 넘어온 값(서비스) :{} ", updateMap);
 			boardMapper.update(updateMap);
 		}catch (Exception e) {
 			e.printStackTrace();
