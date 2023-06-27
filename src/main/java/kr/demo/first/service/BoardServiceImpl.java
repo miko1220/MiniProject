@@ -45,6 +45,7 @@ public class BoardServiceImpl implements BoardService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		log.info("detail 실행한 값 : {}", boardVO);
 		return boardVO;
 	}
 	
