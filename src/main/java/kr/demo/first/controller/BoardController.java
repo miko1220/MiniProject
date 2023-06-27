@@ -28,20 +28,19 @@ public class BoardController {
 	}
 
 	@GetMapping("/update")
-	public String update(@RequestParam int idx, Model model) throws Exception{
+	public String updateOne(@RequestParam int idx, Model model) throws Exception{
 		BoardVO boardVO = null;
-		log.info("detail에서 남어온 값(컨트롤러) : {}", idx);
+		log.info("datail화면에서 넘겨준 idx확인 : {}", idx);
 		boardVO = boardService.detail(idx);
 		model.addAttribute("detailContent", boardVO);
-		log.info("boardVO 메서드 호출(컨트롤러) : {}", boardVO);
+		log.info("detail 메소드 호출(컨트롤러) : {}", boardVO);
 		return "update";
 	}
-	
 	@PostMapping("/updateOk")
-	public String update(@RequestParam Map<String, String> updateMap, Model model) throws Exception {
+	public String updateOne(@RequestParam Map<String, String> updateMap, Model model) throws Exception {
 	    log.info("update에서 남어온 값(컨트롤러) : {}", updateMap);
 	    boardService.update(updateMap);
-	    return "home";
+	    return "redirect:home";
 	}
 	
 	@GetMapping(value="/detail")
@@ -57,9 +56,9 @@ public class BoardController {
 	public String delete(@RequestParam int idx) throws Exception{
 		log.info("delete에서 넘어온 값(컨트롤러) : {}", idx);
 		boardService.delete(idx);
-		return "home";
+		return "redirect:home";
 	}
-	@GetMapping(value="/home")
+	@GetMapping(value={"/","/home"})
 	public String selectList(@RequestParam(defaultValue = "1") int c, @RequestParam(defaultValue = "10") int p, @RequestParam(defaultValue = "10")
 			int b, Model model) throws Exception{
 		

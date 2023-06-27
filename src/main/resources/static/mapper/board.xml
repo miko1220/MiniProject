@@ -19,6 +19,7 @@
 	</insert>
 	<select id="detail" resultType="BoardVO">
 		SELECT
+			idx,
 			name,
 			subject,
 			content,
