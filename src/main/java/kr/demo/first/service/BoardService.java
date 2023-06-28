@@ -20,5 +20,4 @@ public interface BoardService {
 	
 	// 모든 글 표시하기
 	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
-	
 }
