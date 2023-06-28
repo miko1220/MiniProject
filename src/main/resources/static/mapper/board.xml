@@ -21,9 +21,11 @@
 		SELECT
 			idx,
 			name,
+			password,
 			subject,
 			content,
 			view_cnt AS viewCnt,
+			date_format(create_date,  '%y-%m-%d %H:%i:%s') AS createDate,
 			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
 		FROM
 			board
@@ -35,6 +37,7 @@
 			idx,
 			name,
 			subject,
+			date_format(create_date,  '%y-%m-%d %H:%i:%s') AS createDate,
 			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
 		FROM
 			board
