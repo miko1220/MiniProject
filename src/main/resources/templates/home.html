@@ -29,15 +29,18 @@
         <!-- Header-->
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
-                <h1 class="fw-bolder">게시판!!!!</h1>
-                <p class="lead"></p>
-                <a class="btn btn-lg btn-light" href="/insert">작성해보기</a>
+                <h1 class="fw-bolder">자유게시판!!!!</h1>
             </div>
         </header>
 	<!-- Contact section-->
 	<section id="contact">
 		<div class="container px-4">
-			<div  th:text="${info}" style="text-align: right;"></div>
+			<div style="display: flex; align-items: center; justify-content: space-between;">
+				<div th:text="${info}" style="text-align: left;"></div>
+				<div style="text-align: right;">
+					<button class="btn btn-primary" onclick="location.href='/insert'">등록하기</button>
+				</div>
+			</div>
 			<p/>
 			<table class="table">
 				<thead>
@@ -53,7 +56,10 @@
 					<tr th:each="selectList : ${selectList}" th:onclick="|location.href='@{/detail(idx=${selectList.idx})}'|" style="cursor: pointer;">
 						<th scope="row" style="text-align: center;" th:text="${selectList.idx}"></th>
 						<td th:text="${selectList.name}"  style="text-align: center;"></td>
-						<td th:text="${selectList.subject}"  style="text-align: center;"></td>
+						<td id="subject" style="text-align: center;">
+						    <span th:text="${#strings.length(selectList.subject) &gt; 10 ? #strings.substring(selectList.subject, 0, 10) + '...' : selectList.subject}"></span>
+						</td>
+
 						<td th:text="${selectList.createDate}" style="text-align: center;"></td>
 						<td th:text="${selectList.updateDate}" style="text-align: center;"></td>
 					</tr>
@@ -62,15 +68,7 @@
 			<div align="center">
 				<nav aria-label="Page navigation example">
 					<ul class="pagination" style="justify-content: center;">
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li>
-						<li class="page-item"><a class="page-link" href="#"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
+						<li th:utext="${pageList}"></li>
 					</ul>
 				</nav>
 			</div>
