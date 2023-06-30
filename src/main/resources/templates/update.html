@@ -28,7 +28,7 @@
         <!-- Header-->
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
-                <h1 class="fw-bolder">게시판!!!</h1>
+                <h1 class="fw-bolder">자유게시판!!!</h1>
                 <p class="lead"></p>
             </div>
         </header>
@@ -39,26 +39,32 @@
 				<div id="board" align="center">
 					<form action="updateOk" method="post">
 						<input type="hidden" id="idx" name="idx" th:value="${detailContent.idx}" >
-						<div class="mb-3" style="text-align: right;">
-							<input type="text" class="form-control" id="updateDate" th:value="${detailContent.updateDate}" readonly="readonly">
-						</div>
 						<div class="row">
-							<div class="col">
-								<input type="text" class="form-control" id="name" name="name" aria-label="name" th:value="${detailContent.name}" readonly="readonly"> 
+							<div class="col" style="text-align: left;">
+								<div style="display: table-cell; vertical-align: bottom;">작성일자</div>
+								<input type="text" class="form-control" id="createDate" name="createDate" aria-label="createDate" th:value="${detailContent.createDate}" readonly="readonly"> 
 							</div>
-							<div class="col">
-								<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" aria-label="password" required="required">
+							<div class="col" style="text-align: left;">
+								<div style="display: table-cell; vertical-align: bottom;">최종 수정 일자</div>
+								<input type="text" class="form-control" id="updateDate" name="updateDate" aria-label="updateDate" th:value="${detailContent.updateDate}" readonly="readonly">
 							</div>
 						</div>
-						<p>
-						<div class="mb-3">
+						<p/>
+						<div class="col" style="text-align: left;">
+							<div style="display: table-cell; vertical-align: bottom;">넥네임</div>
+							<input type="text" class="form-control" id="name" name="name" aria-label="name" th:value="${detailContent.name}" readonly="readonly"> 
+						</div>
+						<p/>
+						<div class="mb-3" style="text-align: left;">
+							<div style="display: table-cell; vertical-align: bottom;">제목</div>
 							<input type="text" class="form-control" id="subject" name="subject" th:value="${detailContent.subject}" > 
 						</div>
-						<div class="mb-3">
+						<div class="mb-3" style="text-align: left;">
+							<div style="display: table-cell; vertical-align: bottom;">내용</div>
 							<textarea class="form-control" id="content" name="content" required="required" rows="10" th:value="${detailContent.content}" th:text="${detailContent.content}"></textarea>
 						</div>
 						<input type="button" class="btn btn-dark" value="취소하기" id="cancleBtn" name="cancleBtn" onclick="location='/home'">
-						<input type="submit" class="btn btn-primary" id="boardUpdate" name="boardAdd" value="저장하기">
+						<input type="submit" class="btn btn-primary" id="boardUpdate" name="boardAdd" value="저장하기" onclick="return CheckUpdate()">
 					</form>
 				</div>
             </div>
@@ -74,4 +80,16 @@
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    	function CheckUpdate(){
+    		if(confirm('작성한 내용으로 수정하시겠습니까?')){
+    			alert('정상적으로 수정되었습니다')
+    			return true;
+    		}else{
+    			alert('최소되었습니다');
+    			return false;
+    		}
+    	}
+    </script>
  </html>
