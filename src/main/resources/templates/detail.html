@@ -11,7 +11,7 @@
         <link href="css/styles.css" rel="stylesheet" />
     </head>
     <style>
-		#updateDate{
+		#updateDate, #createDate{
 			text-align: right;
 			display: inline;
 			font-weight: normal;
@@ -36,7 +36,7 @@
         <!-- Header-->
         <header class="bg-primary bg-gradient text-white">
             <div class="container px-4 text-center">
-                <h1 class="fw-bolder">게시판!!!</h1>
+                <h1 class="fw-bolder">자유게시판!!!</h1>
             </div>
         </header>
         <!-- Contact section-->
@@ -49,7 +49,8 @@
 			                <ul class="list-group">
 			                    <li class="list-group-item" style="height: 40px; text-align: left; font-size: 15pt; font-weight: bold;" id="name">[[${detailContent.name}]]
 			                        <p style="display:inline; font-weight: normal;">님이 작성한 글일니다</p>
-			                    <li class="list-group-item" id="updateDate" th:text="${detailContent.updateDate}"></li>
+			                    <li class="list-group-item" id="createDate">작성일자 : [[${detailContent.createDate}]]</li>
+			                    <li class="list-group-item" id="updateDate">최종수정일자 : [[${detailContent.updateDate}]]</li>
 			                    <li class="list-group-item" style="height: 40px ;" id="subject" th:text="${detailContent.subject}"></li>
 			                    <li class="list-group-item" style="height: 300px;" id="content" th:text="${detailContent.content}"></li>
 			                </ul>
