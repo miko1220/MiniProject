@@ -17,6 +17,9 @@
 			font-weight: normal;
 			font-size: 12pt;
 		}
+		th{
+			text-align: center;
+		}
 	</style>
     <body id="page-top">
         <!-- Navigation-->
@@ -45,17 +48,35 @@
 			    <form action="/deleteOk" method="post">
 			        <input type="hidden" id="idx" name="idx" th:value="${detailContent.idx}">
 			        <div id="board" align="center">
-			            <div class="list-group">
-			                <ul class="list-group">
-			                    <li class="list-group-item" style="height: 40px; text-align: left; font-size: 15pt; font-weight: bold;" id="name">[[${detailContent.name}]]
-			                        <p style="display:inline; font-weight: normal;">님이 작성한 글일니다</p>
-			                    <li class="list-group-item" id="createDate">작성일자 : [[${detailContent.createDate}]]</li>
-			                    <li class="list-group-item" id="updateDate">최종수정일자 : [[${detailContent.updateDate}]]</li>
-			                    <li class="list-group-item" style="height: 40px ;" id="subject" th:text="${detailContent.subject}"></li>
-			                    <li class="list-group-item" style="height: 300px;" id="content" th:text="${detailContent.content}"></li>
-			                </ul>
-			            </div>
-			            <br/>
+					<div>
+						<table class="table table-bordered">
+							<tr>
+								<th width=10% class="table-warning">작성자</th>
+								<td width=40% class="text-center"
+									th:text="${detailContent.name}"></td>
+								<th width=10% class="table-warning">작성일자</th>
+								<td width=40% class="text-center"
+									th:text="${detailContent.createDate}"></td>
+							</tr>
+							<tr>
+								<th width=10% class="table-warning">조회수</th>
+								<td width=40% class="text-center"
+									th:text="${detailContent.viewCnt}"></td>
+								<th width=10% class="table-warning">최종작성일자</th>
+								<td width=40% class="text-center"
+									th:text="${detailContent.updateDate}"></td>
+							</tr>
+							<tr>
+								<th width=20% class="table-warning">제목</th>
+								<td colspan="3" th:text="${detailContent.subject}" class="text-center"></td>
+							</tr>
+							<tr>
+								<th width=20% class="table-warning" valign="middle">내용</th>
+								<td colspan="3" class="text-left" valign="top" height="200"
+									th:text="${detailContent.content}"></td>
+						</table>
+					</div>
+					<br/>
 			            <input type="button" class="btn btn-secondary" id="goToHome" name="goToHome" value="돌아가기" onclick="location.href='/home'" >
 			            <input type="submit" class="btn btn-danger" id="deleteBtn" name="deleteBtn" value="삭제하기" onclick="return ChecKDelete()">
 			            <input type="button" class="btn btn-primary" value="수정하기" th:onclick="|location.href='@{/update(idx=${detailContent.idx})}'|">
