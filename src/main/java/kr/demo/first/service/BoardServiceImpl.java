@@ -1,9 +1,7 @@
 package kr.demo.first.service;
 
-import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -72,5 +70,15 @@ public class BoardServiceImpl implements BoardService {
 		}
 		log.info("selectList 실행한 값 : {}", pagingVO.getList());
 		return pagingVO;
+	}
+	
+	@Override
+	public void viewCnt(int idx) {
+		log.info("selectList에서 넘어온 값(조회수 서비스) : {}", idx);
+		try {
+			boardMapper.viewCnt(idx);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
