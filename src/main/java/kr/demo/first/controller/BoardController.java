@@ -48,6 +48,7 @@ public class BoardController {
 		BoardVO boardVO = null;
 		log.info("detail에서 넘겨준 idx(컨트롤러) : {}", idx);
 		boardVO = boardService.detail(idx);
+		boardService.viewCnt(boardVO.getIdx());
 		model.addAttribute("detailContent", boardVO);
 		log.info("detail에서 메서드 호출(컨트롤러) : {}", boardVO);
 		return "detail";

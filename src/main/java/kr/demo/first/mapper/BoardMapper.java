@@ -27,5 +27,8 @@ public interface BoardMapper {
 	
 	// 글 개수
 	int selectCount () throws Exception;
+	
+	// 조회수 카운트
+	void viewCnt (int idx) throws Exception;
 }
 
