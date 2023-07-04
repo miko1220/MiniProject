@@ -21,6 +21,6 @@ public interface BoardService {
 	// 모든 글 표시하기
 	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
 	
-	// 조최수 카운트하기
+	// 조회수 카운트하기
 	void viewCnt (int idx) throws Exception;
 }

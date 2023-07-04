@@ -16,6 +16,8 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	BoardMapper boardMapper;
 	
+	
+	// 글쓰기
 	@Override
 	public void insert(Map<String, String> insertMap) {
 		try {
@@ -26,6 +28,7 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 	
+	// 수정하기
 	@Override
 	public void update(Map<String, String> updateMap) {
 		log.info("update에서 넘어온 값(서비스) :{} ", updateMap);
@@ -36,6 +39,7 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 	
+	// 글 상세
 	@Override
 	public BoardVO detail(int idx) {
 		log.info("detail에서 넘어온 값(서비스) :{} ", idx);
@@ -48,7 +52,8 @@ public class BoardServiceImpl implements BoardService {
 		log.info("detail 실행한 값 : {}", boardVO);
 		return boardVO;
 	}
-	
+
+	// 삭제하기
 	@Override
 	public void delete (int idx) {
 		log.info("delete에서 넘어온 값(서비스) : {}", idx);
@@ -58,6 +63,8 @@ public class BoardServiceImpl implements BoardService {
 			e.printStackTrace();
 		}
 	}
+	
+	// 글 목록보기
 	@Override
 	public PagingVO<BoardVO> selectList(int currentPage, int pageSize, int blockSize){
 		PagingVO<BoardVO> pagingVO = null;
@@ -72,6 +79,7 @@ public class BoardServiceImpl implements BoardService {
 		return pagingVO;
 	}
 	
+	// 조회수 카운트하기
 	@Override
 	public void viewCnt(int idx) {
 		log.info("selectList에서 넘어온 값(조회수 서비스) : {}", idx);
