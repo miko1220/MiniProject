@@ -47,11 +47,11 @@ public class BoardController {
 	}
 
 	// 글쓰기
-	@PostMapping("/insert")
+	@PostMapping("/insertOk")
 	public String insert(@RequestParam Map<String, String> insertMap, Model model) throws Exception{
 		log.info("insert에서 남어온 값(컨트롤러) : {}", insertMap);
 		boardService.insert(insertMap);
-		return "home";
+		return "redirect:home";
 	}
 	
 	// 글 수정화면에서 글 상세 보여주기

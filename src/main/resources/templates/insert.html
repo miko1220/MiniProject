@@ -34,30 +34,35 @@
 
         <!-- insertBoard section-->
         <section id="insertBoard">
-            <div class="container px-4">
-				<div id="board" align="center">
-					<form action="">
+		<div class="container px-4">
+			<div id="board" align="center">
+				<form class="was-validated" action="insertOk" method="post">
+					<div class="mb-3">
 						<div class="row">
 							<div class="col">
 								<input type="text" class="form-control" id="name" name="name" placeholder="닉네입" aria-label="name" required="required">
+								<div class="invalid-feedback">닉네임은 필수 사항입니다</div>
 							</div>
 							<div class="col">
 								<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호" aria-label="password" required="required">
+								<div class="invalid-feedback">비밀번호는 필수 사항입니다</div>
 							</div>
 						</div>
-						<p>
-						<div class="mb-3">
-							<input type="text" class="form-control" id="subject" name="subject" placeholder="제목을 입력해주세요">
-						</div>
-						<div class="mb-3">
-							<textarea class="form-control" id="content" name="content" required="required" rows="10" placeholder="본문을 입력해주세요"></textarea>
-						</div>
+					</div>
+					<div class="mb-3">
+						<input type="text" class="form-control" aria-label="subject" id="subject" name="subject" placeholder="제목을 입력해주세요" required>
+						<div class="invalid-feedback">제목은 필수 사항입니다</div>
+					</div>
+					<div class="mb-3">
+						<textarea class="form-control" id="content" name="content" placeholder="본문을 입력해주세요" required rows="10"></textarea>
+						<div class="invalid-feedback">본문은 필수 사항입니다</div>
+					</div>
 						<input type="button" class="btn btn-dark" value="취소하기" id="cancleBtn" name="cancleBtn" onclick="location.href='/home'">
-						<input type="button" class="btn btn-primary" id="boardAdd" name="boardAdd" value="저장하기">
-					</form>
-				</div>
-            </div>
-        </section>
+						<input type="submit" class="btn btn-primary" id="boardAdd" name="boardAdd" value="저장하기" onclick="return CheckInsert()">
+				</form>
+			</div>
+		</div>
+	</section>
 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
@@ -70,78 +75,14 @@
         <script src="js/scripts.js"></script>
     </body>
     <script type="text/javascript">
-    
-    $(function(){
-	    	$('#boardAdd').on('click', function(){
-	    		var name = $('#name').val();
-	    		var password = $('#password').val();
-	    		var content = $('#content').val();
-	    		if(name==null||name.trim().length==0){
-	    			$('#name').attr('style','border-color: #dc3545;');
-	    				$('#name').val('');
-	    				$('#name').html('<div id="warning" class="alert alert-danger" role="alert">닉네임을 입력해주세요</div>');
-	    				$('#name').focus();
-	    		}else if(password==null||password.trim().length==0){
-	    			$('#password').attr('style','border-color: #dc3545;');
-	    				$('#password').val('');
-	    				$('#password').html('<div id="warning" class="alert alert-danger" role="alert">비밀번호를 입력해주세요</div>');
-	    				$('#password').focus();
-	    		}else if(content==null||content.trim().length==0){
-	    			$('#content').attr('style','border-color: #dc3545;');
-	    				$('#content').val('');
-	    				$('#content').html('<div id="warning" class="alert alert-danger" role="alert">본문을 입력해주세요</div>');
-	    				$('#content').focus();
-	    		}else{
-	    			var result = window.confirm('작성한 내용을 추가합니다');
-	    			if(result){
-	    				alert('정상적으로 처리되었습니다.');
-	    				var nameVal = $('#name').val();
-	    				var passwordVal = $('#password').val();
-	    				var subjectVal = $('#subject').val();
-	    				var contentVal = $('#content').val();
-	    				$.ajax({
-	    					url:"/insert",
-	    					dateType: "text",
-	    					type: "post",
-	    					contentType:"application/x-www-form-urlencoded; charset=UTF-8",
-	    					data:{
-	    						name : nameVal,
-	    						password : passwordVal,
-	    						subject : subjectVal,
-	    						content : contentVal
-	    					},
-	    					success: function(data){
-	    						location.href='/home';
-	    					},
-	    					error: function(data){
-	    						alert("Error");
-	    					}
-	    				});
-	    			}else if(!result){
-	    				alert('취소되었습니다.');
-	    				return false;
-	    			}
-	    		}
-	    	});
-	    });
-    
-	    $('#name').on('input',function(){
-	    	if($('#name').val() !=''){
-	    		$('#name').attr('style', 'width:100%;');
-				$('#warning').remove();
-	    	}
-	    });
-	    $('#password').on('input',function(){
-	    	if($('#password').val() !=''){
-	    		$('#password').attr('style', 'width:100%;');
-				$('#warning').remove();
-	    	}
-	    });
-	    $('#content').on('input',function(){
-	    	if($('#content').val() !=''){
-	    		$('#content').attr('style', 'width:100%;');
-				$('#warning').remove();
-	    	}
-	    });
+   	function CheckInsert(){
+		if(confirm('작성한 내용으로 추가하시겠습니까?')){
+			alert('정상적으로 추가되었습니다')
+			return true;
+		}else{
+			alert('최소되었습니다');
+			return false;
+		}
+	}
     </script>
 </html>
