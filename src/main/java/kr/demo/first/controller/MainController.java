@@ -10,6 +10,14 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
+	@GetMapping("/signin")
+	public String signin() {
+		return "signin";
+	}
+	@GetMapping("/signup")
+	public String signup() {
+		return "signup";
+	}
 	@GetMapping("/insert")
 	public String insert() {
 		return "insert";
