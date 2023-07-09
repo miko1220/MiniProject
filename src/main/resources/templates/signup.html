@@ -13,9 +13,6 @@
 			href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
 		
 		
-		<!-- Bootstrap core JS-->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<!-- CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
@@ -24,38 +21,54 @@
 		<!-- Custom styles for this template -->
 		<link href="css/signin.css" rel="stylesheet">
 	</head>
+		<!-- Bootstrap core JS-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 	<body class="text-center">
 		<main class="form-signin w-100 m-auto">
 			<h1 class="h3 mb-3 fw-normal"><i class="bi bi-box-arrow-in-right"></i>  회원가입</h1>
-			<form class="was-validated">
+			<form class="was-validated" action="singUpOk" method="post">
 				<div class="col-12">
 		  			<label for="validationEmail" class="form-label">이메일 주소</label>
-		  			<input type="text" class="form-control is-valid" id="validationEmail" placeholder="email@example.com" required>
+		  			<input type="text" class="form-control is-valid" id="userEmail" name="userEmail" placeholder="email@example.com" required>
 					<div class="invalid-feedback">이메일 주소를 입력해주세요</div>
 				</div>
 				<p></p>
 				<div class="col-12">
 	  				<label for="validationName" class="form-label">닉네임</label>
-	  				<input type="text" class="form-control is-valid" id="validationServer01" placeholder="닉네임" required>
+	  				<input type="text" class="form-control is-valid" id="userName" name="userName" placeholder="닉네임" required>
 					<div class="invalid-feedback">닉네임을 입력해주세요</div>
 				</div>
 				<p></p>
 				<div class="col-12">
 					<label for="validationPassword" class="form-label">비밀번호</label>
-					<input type="password" class="form-control is-valid" id="validationPassword" placeholder="" required>
+					<input type="password" class="form-control is-valid" id="userPassword" name="userPassword" placeholder="" required>
 					<div class="invalid-feedback">비밀번호를 입력해주세요</div>
 				</div>
 				<p></p>
 				<div class="col-12">
 					<label for="validationPassword" class="form-label">비밀번호 확인</label>
-					<input type="password" class="form-control is-valid" id="validationPassword" required>
+					<input type="password" class="form-control is-valid" id="checkPassword" name="checkPassword" required="required">
 					<div class="invalid-feedback">비밀번호를 입력해주세요</div>
 				</div>
 				<p></p>
 				<div class="col-12">
-					<button class="btn btn-primary" type="submit">회원가입하기</button>
+					<input type="button" class="btn btn-dark" value="취소하기" id="cancleBtn" name="cancleBtn" onclick="location.href='/signin'">
+					<input type="submit" class="btn btn-primary" id="toSignUp" name="toSignUp" value="가입하기" onclick="return CheckSignUp()">
 				</div>
 			</form>
 		</main>
 	</body>
+	   <script type="text/javascript">
+		function CheckSignUp(){
+			if(confirm('회원 가입하시겠습니까?')){
+				alert('정상적으로 가입되었습니다')
+				return true;
+			}else{
+				alert('최소되었습니다');
+				return false;
+			}
+		}
+	</script>
 </html>
