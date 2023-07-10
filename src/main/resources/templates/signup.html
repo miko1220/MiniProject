@@ -1,17 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
-		<meta name="author"
-			content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+		<meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 		<meta name="generator" content="Hugo 0.104.2">
 		<title>회원가입</title>
 		
-		<link rel="canonical"
-			href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
-		
+		<link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sign-in/">
 		
 		<!-- CSS only -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
@@ -25,7 +22,20 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-	<body class="text-center">
+	<body  class="text-center">
+	       <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+            <div class="container px-4">
+                <a class="navbar-brand" href="#page-top">MiniProject</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 		<main class="form-signin w-100 m-auto">
 			<h1 class="h3 mb-3 fw-normal"><i class="bi bi-box-arrow-in-right"></i>  회원가입</h1>
 			<form class="was-validated" action="singUpOk" method="post">
@@ -55,19 +65,47 @@
 				<p></p>
 				<div class="col-12">
 					<input type="button" class="btn btn-dark" value="취소하기" id="cancleBtn" name="cancleBtn" onclick="location.href='/signin'">
-					<input type="submit" class="btn btn-primary" id="toSignUp" name="toSignUp" value="가입하기" onclick="return CheckSignUp()">
+					<input type="submit" class="btn btn-primary" id="toSignUp" name="toSignUp" value="가입하기">
 				</div>
 			</form>
 		</main>
 	</body>
-	   <script type="text/javascript">
-		function CheckSignUp(){
-			if(confirm('회원 가입하시겠습니까?')){
-				alert('정상적으로 가입되었습니다')
-				return true;
-			}else{
-				alert('최소되었습니다');
-				return false;
+	<script type="text/javascript">
+		document.getElementById("toSignUp").onclick = function() {
+			const userEmail = document.getElementById("userEmail").value;
+			const userName = document.getElementById("userName").value;
+			const userPassword = document.getElementById("userPassword").value;
+			const checkPassword = document.getElementById("checkPassword").value;
+			
+			var regexp = /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/;
+			
+			if(userEmail.length == 0){
+				alert('이메일을 입력해주세요');
+			}else if(userName.length == 0){
+				alert('닉네임을 입력해주세요');
+			}else if(userPassword.length == 0){
+				alert('비밀번호를 입력해주세요');
+			}else if(checkPassword.length == 0){
+				alert('비밀번호 다시 입력해주세요');
+			}
+			
+			else {
+				if (regexp.test(userEmail) != true) {
+					alert('입력된 이메일은 이메일 형식이 아님니다.');
+					return false;
+				}
+				else if (userPassword != checkPassword) {
+					alert('비밀번호가 일치히지 않습니다.');
+					return false;
+				} else {
+					if (confirm('회원 가입하시겠습니까?')) {
+						alert('정상적으로 가입되었습니다')
+						return true;
+					} else {
+						alert('최소되었습니다');
+						return false;
+					}
+				}
 			}
 		}
 	</script>
