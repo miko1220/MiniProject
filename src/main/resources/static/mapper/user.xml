@@ -16,4 +16,13 @@
 				now()
 			)
 	</insert>
+	<select id="getUserByEmailAndPassword" resultType="UserVO">
+		SELECT
+			*
+		FROM 
+			user
+		WHERE 
+			userEmail = #{userEmail} 
+			AND userPassword = #{userPassword}
+	</select>
 </mapper>
