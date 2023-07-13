@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import kr.demo.first.service.UserService;
+import kr.demo.first.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -25,6 +28,17 @@ public class UserController {
 		return "redirect:signin";
 	}
 	
-	
-	
+	// 로그인하기
+	@PostMapping("/signinOk")
+		public String signin(@RequestParam("userEmail") String userEmail, @RequestParam("userPassword") String userPassword, Model model, HttpServletRequest request) throws Exception {
+		log.info("signin에서 넘어온 값(컨트롤러) : {} {}", userEmail, userPassword);
+		UserVO userVO = userService.signin(userEmail, userPassword);
+		if(userVO != null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", userVO);
+			return "redirect:home";
+		}else {
+			return "redirect:signin?error";
+		}
+	}
 }
