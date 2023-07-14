@@ -14,6 +14,10 @@ public class MainController {
 	public String signin() {
 		return "signin";
 	}
+	@GetMapping("/signinError")
+	public String signinError() {
+		return "signinError";
+	}
 	@GetMapping("/signup")
 	public String signup() {
 		return "signup";
