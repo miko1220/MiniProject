@@ -38,7 +38,8 @@ public class UserController {
 			session.setAttribute("user", userVO);
 			return "redirect:home";
 		}else {
-			return "redirect:signin?error";
+			model.addAttribute("error", "로그인에 실패했습니다. 다시 입력해주세요");
+			return "redirect:signinError";
 		}
 	}
 }
