@@ -21,7 +21,7 @@ public class BoardController {
 	BoardService boardService;
 	
 	// 글 목목보기
-	@GetMapping(value={"/","/home"})
+	@GetMapping(value={"/","/myPage"})
 	public String selectList(@RequestParam(defaultValue = "1") int c, @RequestParam(defaultValue = "10") int p, @RequestParam(defaultValue = "10")
 	int b, Model model) throws Exception{
 		
@@ -31,7 +31,7 @@ public class BoardController {
 		model.addAttribute("pageList", pagingVO.getPageList());
 		
 		log.info("selectList 메서드 호출(컨트롤러) : {}", pagingVO.getList());
-		return "home";
+		return "myPage";
 	}
 
 	// 글 상세보기
