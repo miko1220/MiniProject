@@ -36,7 +36,7 @@ public class UserController {
 		if(userVO != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", userVO);
-			return "redirect:myPage";
+			return "redirect:mainPage";
 		}else {
 			model.addAttribute("error", "로그인에 실패했습니다. 다시 입력해주세요");
 			return "redirect:signinError";

@@ -30,4 +30,8 @@ public class MainController {
 	public String home() {
 		return "home";
 	}
+	@GetMapping("/myPageEdit")
+	public String myPageEdit() {
+		return "myPageEdit";
+	}
 }
