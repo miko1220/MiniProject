@@ -5,7 +5,7 @@
 
 	<!-- 글 추가하기 -->
 	<insert id="insert" parameterType="map">
-		INSERT INTO board(
+		INSERT INTO board2(
 				name,
 				password,
 				subject,
@@ -24,15 +24,14 @@
 	<select id="detail" resultType="BoardVO">
 		SELECT
 			idx,
-			name,
-			password,
+			userName AS name,
 			subject,
 			content,
 			view_cnt AS viewCnt,
 			date_format(create_date,  '%y-%m-%d %H:%i:%s') AS createDate,
 			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
 		FROM
-			board
+			board2
 		WHERE
 			idx = #{idx}
 	</select>
@@ -40,6 +39,19 @@
 	<!-- 글 목록보기 -->
 	<select id="selectList" resultType="BoardVO" parameterType="int">
 		SELECT
+			b.idx as idx, 
+			b.UserName as name, 
+			subject ,content,
+			view_cnt as viewCnt,
+			date_format(create_date,  '%y-%m-%d %H:%i:%s') AS createDate,
+			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
+		FROM board2 b , user u 
+		WHERE b.UserIdx = u.UserIdx
+		ORDER BY 
+			update_date DESC
+		LIMIT
+			#{startNo},#{pageSize}
+		<!--SELECT
 			idx,
 			name,
 			subject,
@@ -52,6 +64,7 @@
 			update_date DESC
 		LIMIT
 			#{startNo},#{pageSize}
+		 -->
 	</select>
 	
 	<!-- 글 건수 -->
@@ -59,12 +72,12 @@
 		SELECT
 			 count(*) 
 		FROM
-			board 
+			board2 
 	</select>
 	
 	<!-- 글 수정하기 -->
 	<update id="update" parameterType="map">
-		UPDATE board SET
+		UPDATE board2 SET
 			subject = #{subject},
 			content = #{content},
 			update_date = now()
@@ -74,14 +87,14 @@
 	
 	<!-- 글 삭제하기 -->
 	<delete id="delete" parameterType="int">
-		DELETE FROM board 
+		DELETE FROM board2 
 			WHERE
 				idx = #{idx}
 	</delete>
 	
 	<!-- 조회수 카운트하기 -->
 	<update id="viewCnt" parameterType="int">
-		UPDATE board SET
+		UPDATE board2 SET
 			view_cnt = view_cnt + 1
 		WHERE
 			idx = #{idx}
