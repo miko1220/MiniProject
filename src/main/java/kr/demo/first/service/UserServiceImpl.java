@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.demo.first.mapper.UserMapper;
+import kr.demo.first.vo.BoardVO;
+import kr.demo.first.vo.PagingVO;
 import kr.demo.first.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,5 +45,48 @@ public class UserServiceImpl implements UserService {
 			return null;
 		}
 	}
-
+	
+	@Override
+	public UserVO getUserByUserIdx(int userIdx) {
+		try {
+			log.info("getUserByUserIdx 메서드 호출(서비스) : {}",userIdx);
+			UserVO userVO = userMapper.getUserByUserIdx(userIdx);
+			return userVO;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
+	public String getUserName(int userIdx) {
+		try {
+			log.info("getUserName 메서드 호출(서비스) : {}", userIdx);
+			UserVO userVO = userMapper.getUserByUserIdx(userIdx);
+			if(userVO!=null) {
+				return userVO.getUserName();
+			} else {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	// 글 목록보기
+	@Override
+	public PagingVO<BoardVO> selectList(int currentPage, int pageSize, int blockSize){
+		PagingVO<BoardVO> pagingVO = null;
+		try {
+			int totalCount = userMapper.selectCount();
+			pagingVO = new PagingVO<>(totalCount, currentPage, pageSize, blockSize);
+			pagingVO.setList(userMapper.selectList(pagingVO.getStartNo(), pagingVO.getPageSize()));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		log.info("selectList 실행한 값 : {}", pagingVO.getList());
+		return pagingVO;
+	}
 }

@@ -22,11 +22,6 @@ public interface BoardMapper {
 	// 글 삭제
 	void delete(int idx) throws Exception;
 	
-	// 모든 글 표시
-	List<BoardVO> selectList(int startNo, int pageSize) throws Exception;
-	
-	// 글 개수
-	int selectCount () throws Exception;
 	
 	// 조회수 카운트
 	void viewCnt (int idx) throws Exception;

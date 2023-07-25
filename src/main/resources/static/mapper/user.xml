@@ -25,4 +25,56 @@
 			userEmail = #{userEmail} 
 			AND userPassword = #{userPassword}
 	</select>
+	<select id="getUserByUserIdx" parameterType="int" resultType="UserVO">
+		SELECT
+			 userIdx
+		FROM
+			 user
+		WHERE
+			 userEmail = #{userEmail}
+			 AND userPassword = #{userPassword}
+	</select>
+		<select id="selectList" resultType="BoardVO" parameterType="int">
+		SELECT
+			b.idx as idx, 
+			b.UserName as name, 
+			subject ,content,
+			view_cnt as viewCnt,
+			date_format(create_date,  '%y-%m-%d %H:%i:%s') AS createDate,
+			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
+		FROM board2 b , user u 
+		WHERE b.UserIdx = u.UserIdx
+		ORDER BY 
+			update_date DESC
+		LIMIT
+			#{startNo},#{pageSize}
+		<!--SELECT
+			idx,
+			name,
+			subject,
+			date_format(create_date,  '%y-%m-%d %H:%i:%s') AS createDate,
+			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate,
+			view_cnt AS viewCnt
+		FROM
+			board
+		ORDER BY 
+			update_date DESC
+		LIMIT
+			#{startNo},#{pageSize}
+		 -->
+	</select>
+	<select id="selectCount" resultType="int">
+		SELECT
+			 count(*) 
+		FROM
+			board2 
+	</select>
+	<select id="getUserName" resultType="String" parameterType="int">
+		SELECT
+			userName
+		FROM
+			user
+		WHERE
+			userIdx = #{userIdx}
+	</select>
 </mapper>
