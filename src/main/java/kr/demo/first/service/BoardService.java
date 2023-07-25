@@ -18,8 +18,6 @@ public interface BoardService {
 	// 글 삭제하기
 	void delete(int idx) throws Exception;
 	
-	// 모든 글 표시하기
-	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
 	
 	// 조회수 카운트하기
 	void viewCnt (int idx) throws Exception;

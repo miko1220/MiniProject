@@ -19,20 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
-	
-	// 글 목목보기
-	@GetMapping(value={"/","/mainPage"})
-	public String selectList(@RequestParam(defaultValue = "1") int c, @RequestParam(defaultValue = "10") int p, @RequestParam(defaultValue = "10")
-	int b, Model model) throws Exception{
-		
-		PagingVO<BoardVO> pagingVO = boardService.selectList(c, p, b);
-		model.addAttribute("selectList", pagingVO.getList());
-		model.addAttribute("info", pagingVO.getInfo());
-		model.addAttribute("pageList", pagingVO.getPageList());
-		
-		log.info("selectList 메서드 호출(컨트롤러) : {}", pagingVO.getList());
-		return "mainPage";
-	}
+
 
 	// 글 상세보기
 	@GetMapping(value="/detail")

@@ -64,20 +64,6 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 	
-	// 글 목록보기
-	@Override
-	public PagingVO<BoardVO> selectList(int currentPage, int pageSize, int blockSize){
-		PagingVO<BoardVO> pagingVO = null;
-		try {
-			int totalCount = boardMapper.selectCount();
-			pagingVO = new PagingVO<>(totalCount, currentPage, pageSize, blockSize);
-			pagingVO.setList(boardMapper.selectList(pagingVO.getStartNo(), pagingVO.getPageSize()));
-		} catch(Exception e){
-			e.printStackTrace();
-		}
-		log.info("selectList 실행한 값 : {}", pagingVO.getList());
-		return pagingVO;
-	}
 	
 	// 조회수 카운트하기
 	@Override
