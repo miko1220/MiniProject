@@ -10,7 +10,7 @@ public class MainController {
 	public String index() {
 		return "index";
 	}
-	@GetMapping("/signin")
+	@GetMapping({"/signin","/"})
 	public String signin() {
 		return "signin";
 	}
