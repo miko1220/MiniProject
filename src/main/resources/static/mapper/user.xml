@@ -27,12 +27,11 @@
 	</select>
 	<select id="getUserByUserIdx" parameterType="int" resultType="UserVO">
 		SELECT
-			 userIdx
+			*
 		FROM
 			 user
 		WHERE
-			 userEmail = #{userEmail}
-			 AND userPassword = #{userPassword}
+			 userIdx = #{userIdx}
 	</select>
 		<select id="selectList" resultType="BoardVO" parameterType="int">
 		SELECT
@@ -68,13 +67,5 @@
 			 count(*) 
 		FROM
 			board2 
-	</select>
-	<select id="getUserName" resultType="String" parameterType="int">
-		SELECT
-			userName
-		FROM
-			user
-		WHERE
-			userIdx = #{userIdx}
 	</select>
 </mapper>

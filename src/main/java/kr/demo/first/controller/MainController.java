@@ -22,10 +22,7 @@ public class MainController {
 	public String signup() {
 		return "signup";
 	}
-	@GetMapping("/insert")
-	public String insert() {
-		return "insert";
-	}
+	
 	@GetMapping("/home")
 	public String home() {
 		return "home";
