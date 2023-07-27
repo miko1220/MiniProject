@@ -12,7 +12,7 @@
 				content,
 				create_date
 			) VALUES (
-				#{idx},
+				#{userIdx},
 				#{name},
 				#{subject},
 				#{content},

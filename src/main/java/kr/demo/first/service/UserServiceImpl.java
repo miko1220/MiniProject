@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
+	// 로그린한 사람의 정보얻기
 	@Override
 	public UserVO getUserByUserIdx(int userIdx) {
 		try {
@@ -58,22 +59,6 @@ public class UserServiceImpl implements UserService {
 		}
 	}
 	
-	@Override
-	public String getUserName(int userIdx) {
-		try {
-			log.info("getUserName 메서드 호출(서비스) : {}", userIdx);
-			UserVO userVO = userMapper.getUserByUserIdx(userIdx);
-			if(userVO!=null) {
-				return userVO.getUserName();
-			} else {
-				return null;
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 	
 	// 글 목록보기
 	@Override

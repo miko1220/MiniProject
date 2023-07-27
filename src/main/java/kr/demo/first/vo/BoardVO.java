@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BoardVO {
 	private int idx;
+	private int userIdx;
 	private String name;
 	private String password;
 	private String subject;

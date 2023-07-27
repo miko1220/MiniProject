@@ -15,9 +15,8 @@ public interface UserService {
 	// 로그인한기
 	UserVO signin(String userEmail, String userPassword) throws Exception;
 	
+	// 로그린한 사람의 정보얻기
 	UserVO getUserByUserIdx(int userIdx) throws Exception;
 	
 	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
-	
-	String getUserName(int userIdx) throws Exception;
 }

@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jakarta.servlet.http.HttpSession;
 import kr.demo.first.service.BoardService;
 import kr.demo.first.vo.BoardVO;
 import kr.demo.first.vo.PagingVO;
+import kr.demo.first.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -34,6 +36,16 @@ public class BoardController {
 	}
 
 	// 글쓰기
+	@GetMapping("/insert")
+	public String showInsertPage(Model model, HttpSession httpSession) {
+		UserVO userVO = (UserVO)httpSession.getAttribute("user");
+		if(userVO==null) {
+			return "redirect:/signin";
+		}
+		model.addAttribute("userInfo", userVO);
+		return "insert";
+				
+	}
 	@PostMapping("/insertOk")
 	public String insert(@RequestParam Map<String, String> insertMap, Model model) throws Exception{
 		log.info("insert에서 남어온 값(컨트롤러) : {}", insertMap);

@@ -56,9 +56,8 @@ public class UserController {
 			return "redirect:/signin";
 		}
 		UserVO userInfo = userService.getUserByUserIdx(userVO.getUserIdx());
+		log.info("userInfo : {}" ,userInfo);
 		model.addAttribute("userInfo",userInfo);
-//		String userName = userService.getUserName(userInfo.getUserIdx());
-//		model.addAttribute("userName",userName);
 		PagingVO<BoardVO> pagingVO = userService.selectList(c, p, b);
 		model.addAttribute("selectList", pagingVO.getList());
 		model.addAttribute("info", pagingVO.getInfo());
