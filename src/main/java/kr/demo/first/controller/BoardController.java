@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpSession;
 import kr.demo.first.service.BoardService;
+import kr.demo.first.service.UserService;
 import kr.demo.first.vo.BoardVO;
 import kr.demo.first.vo.PagingVO;
 import kr.demo.first.vo.UserVO;
@@ -47,10 +48,11 @@ public class BoardController {
 				
 	}
 	@PostMapping("/insertOk")
-	public String insert(@RequestParam Map<String, String> insertMap, Model model) throws Exception{
+	public String insert(@RequestParam Map<String, String> insertMap, Model model, HttpSession httpSession) throws Exception{
 		log.info("insert에서 남어온 값(컨트롤러) : {}", insertMap);
+		UserVO userVO = (UserVO) httpSession.getAttribute("user");
 		boardService.insert(insertMap);
-		return "redirect:home";
+		return "redirect:mainPage?userIdx=" + userVO.getUserIdx();
 	}
 	
 	// 글 수정화면에서 글 상세 보여주기
@@ -77,7 +79,7 @@ public class BoardController {
 	public String delete(@RequestParam int idx) throws Exception{
 		log.info("delete에서 넘어온 값(컨트롤러) : {}", idx);
 		boardService.delete(idx);
-		return "redirect:home";
+		return "redirect:mainPage";
 	}
 	
 }

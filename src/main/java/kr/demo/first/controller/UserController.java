@@ -47,7 +47,7 @@ public class UserController {
 			return "redirect:signinError";
 		}
 	}
-	
+	// 로그인한 후
 	@GetMapping(value="/mainPage")
 	public String selectList(@RequestParam(defaultValue = "1") int c, @RequestParam(defaultValue = "10") int p, @RequestParam(defaultValue = "10")
 	int b, Model model, HttpSession session) throws Exception{
@@ -65,5 +65,12 @@ public class UserController {
 		
 		log.info("selectList 메서드 호출(컨트롤러) : {}", pagingVO.getList());
 		return "mainPage";
+	}
+	
+	// 로그아웃
+	@PostMapping("/logout")
+	public String logout(HttpSession httpSession) {
+		httpSession.invalidate();
+		return "redirect:/signin";
 	}
 }

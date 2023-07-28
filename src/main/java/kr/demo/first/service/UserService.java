@@ -18,5 +18,6 @@ public interface UserService {
 	// 로그린한 사람의 정보얻기
 	UserVO getUserByUserIdx(int userIdx) throws Exception;
 	
+	// 자유게시판 목록
 	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
 }
