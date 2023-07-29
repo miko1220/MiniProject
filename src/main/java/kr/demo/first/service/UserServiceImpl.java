@@ -74,4 +74,16 @@ public class UserServiceImpl implements UserService {
 		log.info("selectList 실행한 값 : {}", pagingVO.getList());
 		return pagingVO;
 	}
+	
+	@Override
+	public void updateMyInfo(Map<String, String> updateMyInfoMap) {
+		try {
+			log.info("updateMyInfo 메서드 호출 (서비스) : {}", updateMyInfoMap);
+			userMapper.updateMyInfo(updateMyInfoMap);
+			log.info("Update성공");
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.error("Update실패 : {}", e.getMessage());
+		}
+	}
 }

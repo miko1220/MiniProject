@@ -33,7 +33,7 @@
 		WHERE
 			 userIdx = #{userIdx}
 	</select>
-		<select id="selectList" resultType="BoardVO" parameterType="int">
+	<select id="selectList" resultType="BoardVO" parameterType="int">
 		SELECT
 			b.idx as idx, 
 			b.UserName as name, 
@@ -68,4 +68,13 @@
 		FROM
 			board2 
 	</select>
+	<update id="updateMyInfo" parameterType="map">
+		UPDATE 
+			user
+		SET 
+			userEmail = #{userEmail},
+			userName = #{userName}
+		WHERE
+			userIdx = #{userIdx}
+	</update>
 </mapper>
