@@ -20,4 +20,6 @@ public interface UserService {
 	
 	// 자유게시판 목록
 	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
+
+	void updateMyInfo(Map<String, String> updateMyInfoMap) throws Exception;
 }

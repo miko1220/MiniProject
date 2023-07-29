@@ -99,7 +99,7 @@
 					<div class="collapse show" id="home-collapse">
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 							<li>
-								<a th:href="@{/insert(userIdx=${userInfo.userIdx})}" class="link-dark d-inline-flex text-decoration-none rounded">추가하기</a>
+								<a th:href="@{/insert(userIdx=${userInfo.userIdx})}" class="link-dark d-inline-flex text-decoration-none rounded"> 글 작성하기</a>
 							</li>
 							<li>
 								<a href="#" class="link-dark d-inline-flex text-decoration-none rounded">글 관리</a>
@@ -176,7 +176,7 @@
 				<div style="display: flex; align-items: center; justify-content: space-between;">
 					<div th:text="${info}" style="text-align: left;"></div>
 					<div style="text-align: right;">
-						<button class="btn btn-primary" onclick="location.href='/insert'">등록하기</button>
+						<a th:href="@{/insert(userIdx=${userInfo.userIdx})}" class="btn btn-primary">글 작성하기</a>
 				</div>
 			</div>
 			<p/>

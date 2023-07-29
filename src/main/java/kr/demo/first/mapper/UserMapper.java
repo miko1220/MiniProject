@@ -28,5 +28,7 @@ public interface UserMapper {
 	// 조회수
 	int selectCount () throws Exception;
 	
+	void updateMyInfo(Map<String, String> updateMyInfoMap) throws Exception;
+	
 }
 

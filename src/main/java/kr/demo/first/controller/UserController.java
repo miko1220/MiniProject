@@ -73,4 +73,21 @@ public class UserController {
 		httpSession.invalidate();
 		return "redirect:/signin";
 	}
+	
+	@GetMapping("/myPageEdit")
+	public String myPageEdit(Model model, HttpSession session) {
+	    UserVO userVO = (UserVO) session.getAttribute("user");
+	    if (userVO == null) {
+	        return "redirect:/signin";
+	    }
+	    model.addAttribute("userInfo", userVO);
+	    return "myPageEdit";
+	}
+	
+	@PostMapping("myPageEditOk")
+	public String updateMyInfo(@RequestParam Map<String, String> updateMyInfoMap, Model model, HttpSession session) throws Exception{
+		log.info("updateMyInfo에서 넘어온 값(컨트롤러) : {}", updateMyInfoMap);
+		userService.updateMyInfo(updateMyInfoMap);
+		return "redirect:/mainPage";
+	}
 }
