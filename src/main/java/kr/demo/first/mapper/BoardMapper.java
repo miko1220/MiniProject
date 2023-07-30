@@ -1,7 +1,6 @@
 package kr.demo.first.mapper;
 
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -25,5 +24,7 @@ public interface BoardMapper {
 	
 	// 조회수 카운트
 	void viewCnt (int idx) throws Exception;
+	
+	void updateBoardName(Map<String, String>updateBoardNameMap) throws Exception;
 }
 

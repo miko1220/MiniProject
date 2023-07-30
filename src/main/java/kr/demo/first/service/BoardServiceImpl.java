@@ -75,4 +75,15 @@ public class BoardServiceImpl implements BoardService {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	@Override
+	public void updateBoardName(Map<String, String> updateBoardNameMap) {
+		log.info("updateBoardName에서 넘어온 값(서비스) : {}", updateBoardNameMap);
+		try {
+			boardMapper.updateBoardName(updateBoardNameMap);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }

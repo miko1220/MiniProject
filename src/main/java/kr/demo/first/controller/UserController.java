@@ -1,5 +1,6 @@
 package kr.demo.first.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
 	@Autowired
 	UserService userService;
+	@Autowired
 	BoardService boardService;
 	
 	// 회원가입하기
@@ -87,7 +89,16 @@ public class UserController {
 	@PostMapping("myPageEditOk")
 	public String updateMyInfo(@RequestParam Map<String, String> updateMyInfoMap, Model model, HttpSession session) throws Exception{
 		log.info("updateMyInfo에서 넘어온 값(컨트롤러) : {}", updateMyInfoMap);
+		UserVO userInfo = (UserVO) session.getAttribute("user");
+		String oldUserName = userInfo.getUserName();
 		userService.updateMyInfo(updateMyInfoMap);
+		String newUserName = updateMyInfoMap.get("userName");
+		if(!newUserName.equals(oldUserName)) {
+			Map<String, String> updateBoardNameMap = new HashMap<>();
+			updateBoardNameMap.put("newUserName", newUserName);
+			updateBoardNameMap.put("oldUserName", oldUserName);
+			boardService.updateBoardName(updateBoardNameMap);
+		}
 		return "redirect:/mainPage";
 	}
 }
