@@ -21,4 +21,7 @@ public interface BoardService {
 	
 	// 조회수 카운트하기
 	void viewCnt (int idx) throws Exception;
+	
+	void updateBoardName(Map<String, String>updateBoardNameMap) throws Exception;
+
 }

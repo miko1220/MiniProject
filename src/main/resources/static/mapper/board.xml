@@ -60,4 +60,10 @@
 		WHERE
 			idx = #{idx}
 	</update>
+	<update id="updateBoardName" parameterType="map">
+		UPDATE board2 SET
+			UserName = #{newUserName}
+		WHERE
+			UserName = #{oldUserName}
+	</update>
 </mapper>

@@ -22,6 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	@Autowired
 	BoardService boardService;
+	@Autowired
+	UserService userService;
 
 
 	// 글 상세보기
@@ -38,12 +40,14 @@ public class BoardController {
 
 	// 글쓰기
 	@GetMapping("/insert")
-	public String showInsertPage(Model model, HttpSession httpSession) {
+	public String showInsertPage(Model model, HttpSession httpSession) throws Exception {
 		UserVO userVO = (UserVO)httpSession.getAttribute("user");
 		if(userVO==null) {
 			return "redirect:/signin";
 		}
-		model.addAttribute("userInfo", userVO);
+		UserVO updatedUser = userService.getUserByUserIdx(userVO.getUserIdx());
+		httpSession.setAttribute("user", updatedUser);
+		model.addAttribute("userInfo", updatedUser);
 		return "insert";
 				
 	}
