@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -188,7 +188,7 @@
 						<textarea class="form-control" id="content" name="content" placeholder="본문을 입력해주세요" required rows="10"></textarea>
 						<div class="invalid-feedback">본문은 필수 사항입니다</div>
 					</div>
-						<input type="button" class="btn btn-dark" value="취소하기" id="cancleBtn" name="cancleBtn" onclick="location.href='/home'">
+						<a th:href="@{/mainPage(userIdx=${userInfo.userIdx})}" class="btn btn-dark">취소하기</a>
 						<input type="submit" class="btn btn-primary" id="boardAdd" name="boardAdd" value="저장하기" onclick="return CheckInsert()">
 				</form>
 			</div>
@@ -202,14 +202,22 @@
         <script src="js/scripts.js"></script>
     </body>
     <script type="text/javascript">
-   	function CheckInsert(){
-		if(confirm('작성한 내용으로 추가하시겠습니까?')){
-			alert('정상적으로 추가되었습니다')
-			return true;
-		}else{
-			alert('최소되었습니다');
-			return false;
-		}
-	}
+    document.getElementById("boardAdd").onclick = function(){
+    	const subject = document.getElementById("subject").value;
+    	const content = document.getElementById("content").value;
+    	if(subject.lenght == 0){
+    		alert('제목을 입력해주세요.');
+    	}else if(content.length == 0){
+    		alert('본문을 입력해주세요.');
+    	}else {
+    		if(confirm('작성한 내용으로 추가하시겠습니까?')){
+    			alert('정상적으로 추가되었습니다')
+    			return true;
+    		}else{
+    			alert('최소되었습니다');
+    			return false;
+    		}
+    	}
+    }
     </script>
 </html>

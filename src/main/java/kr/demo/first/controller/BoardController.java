@@ -28,8 +28,11 @@ public class BoardController {
 
 	// 글 상세보기
 	@GetMapping(value="/detail")
-	public String detail(@RequestParam int idx, Model model) throws Exception {
+	public String detail(@RequestParam int idx, Model model, HttpSession httpSession) throws Exception {
 		BoardVO boardVO = null;
+		UserVO userVO = (UserVO)httpSession.getAttribute("user");
+		httpSession.setAttribute("user", userVO);
+		model.addAttribute("userInfo", userVO);
 		log.info("detail에서 넘겨준 idx(컨트롤러) : {}", idx);
 		boardVO = boardService.detail(idx);
 		boardService.viewCnt(boardVO.getIdx());
