@@ -213,7 +213,7 @@ th{
 						</table>
 					</div>
 					<br/>
-			            <input type="button" class="btn btn-secondary" id="goToHome" name="goToHome" value="돌아가기" onclick="location.href='/home'" >
+						<a th:href="@{/mainPage(userIdx=${userInfo.userIdx})}" class="btn btn-secondary">돌아가기</a>
 			            <input type="submit" class="btn btn-danger" id="deleteBtn" name="deleteBtn" value="삭제하기" onclick="return ChecKDelete()">
 			            <input type="button" class="btn btn-primary" value="수정하기" th:onclick="|location.href='@{/update(idx=${detailContent.idx})}'|">
 			        </div>

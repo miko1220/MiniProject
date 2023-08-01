@@ -75,6 +75,7 @@ public class UserServiceImpl implements UserService {
 		return pagingVO;
 	}
 	
+	// 회원정보 수정
 	@Override
 	public void updateMyInfo(Map<String, String> updateMyInfoMap) {
 		try {
@@ -85,5 +86,21 @@ public class UserServiceImpl implements UserService {
 			e.printStackTrace();
 			log.error("Update실패 : {}", e.getMessage());
 		}
+	}
+	
+	// 글 관리에서 보는 내가 쓴 글 리스트
+	@Override
+	public PagingVO<BoardVO> selectMyList(UserVO userVO,  int currentPage, int pageSize, int blockSize){
+		PagingVO<BoardVO> pagingVO = null;
+		try {
+			int totalCount = userMapper.selectCount();
+			int userIdx = userVO.getUserIdx();
+			pagingVO = new PagingVO<>(totalCount, currentPage, pageSize, blockSize);
+			pagingVO.setList(userMapper.selectMyList(userIdx, pagingVO.getStartNo(), pagingVO.getPageSize()));
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+		log.info("selectMyList 실행한 값 : {}", pagingVO.getList());
+		return pagingVO;
 	}
 }

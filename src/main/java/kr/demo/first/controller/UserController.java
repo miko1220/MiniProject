@@ -101,4 +101,24 @@ public class UserController {
 		}
 		return "redirect:/mainPage";
 	}
+	// 글 관리
+	@GetMapping(value="/myList")
+	public String selectMyList(@RequestParam(defaultValue = "1") int c, @RequestParam(defaultValue = "10") int p, @RequestParam(defaultValue = "10")
+	int b, Model model, HttpSession session) throws Exception{
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		if(userVO == null) {
+			return "redirect:/signin";
+		}
+		int userIdx = userVO.getUserIdx();
+		UserVO userInfo = userService.getUserByUserIdx(userVO.getUserIdx());
+		log.info("userInfo : {}" ,userInfo);
+		model.addAttribute("userInfo",userInfo);
+		PagingVO<BoardVO> pagingVO = userService.selectMyList(userVO,c, p, b);
+		model.addAttribute("selectMyList", pagingVO.getList());
+		model.addAttribute("info", pagingVO.getInfo());
+		model.addAttribute("pageList", pagingVO.getPageList());
+		
+		log.info("selectMyList 메서드 호출(컨트롤러) : {}", pagingVO.getList());
+		return "myList";
+	}
 }

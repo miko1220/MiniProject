@@ -28,7 +28,10 @@ public interface UserMapper {
 	// 조회수
 	int selectCount () throws Exception;
 	
+	//회원 정보 수정
 	void updateMyInfo(Map<String, String> updateMyInfoMap) throws Exception;
 	
+	// 글 관리에서 보는 내가 쓴 글 리스트
+	List<BoardVO> selectMyList(int userIdx, int startNo, int pageSize) throws Exception;
 }
 
