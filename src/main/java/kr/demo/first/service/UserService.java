@@ -11,7 +11,6 @@ public interface UserService {
 	// 회원가입 
 	void signUp(Map<String, String> signUpMap) throws Exception;
 	
-	
 	// 로그인한기
 	UserVO signin(String userEmail, String userPassword) throws Exception;
 	
@@ -21,5 +20,10 @@ public interface UserService {
 	// 자유게시판 목록
 	PagingVO<BoardVO> selectList(int currentPage, int pagiSize, int blockSize) throws Exception;
 
+	// 회원정보 수정하기
 	void updateMyInfo(Map<String, String> updateMyInfoMap) throws Exception;
+
+	// 글 관리에서 보는 내가 쓴 글을 보는 리스트
+	PagingVO<BoardVO> selectMyList(UserVO userVO, int currentPage, int pagiSize, int blockSize) throws Exception;
+	
 }

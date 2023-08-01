@@ -77,4 +77,20 @@
 		WHERE
 			userIdx = #{userIdx}
 	</update>
+	<select id="selectMyList" resultType="BoardVO" parameterType="int">
+		SELECT
+			b.idx as idx, 
+			b.UserName as name, 
+			subject ,content,
+			view_cnt as viewCnt,
+			date_format(create_date,  '%y-%m-%d %H:%i:%s') AS createDate,
+			date_format(update_date,  '%y-%m-%d %H:%i:%s') AS updateDate
+		FROM board2 b , user u 
+		WHERE b.UserIdx = u.UserIdx
+		AND u.UserIdx = #{userIdx}
+		ORDER BY 
+			update_date DESC
+		LIMIT
+			#{startNo},#{pageSize}
+	</select>
 </mapper>
