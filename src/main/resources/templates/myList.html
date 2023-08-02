@@ -99,10 +99,10 @@
 					<div class="collapse show" id="home-collapse">
 						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
 							<li>
-								<a th:href="@{/insert(userIdx=${userInfo.userIdx})}" class="link-dark d-inline-flex text-decoration-none rounded"> 글 작성하기</a>
+								<a th:href="@{/mainPage(userIdx=${userInfo.userIdx})}" class="link-dark d-inline-flex text-decoration-none rounded">메인페이지</a>
 							</li>
 							<li>
-								<a th:href="@{/myList(userIdx=${userInfo.userIdx})}" class="link-dark d-inline-flex text-decoration-none rounded">글 관리</a>
+								<a th:href="@{/insert(userIdx=${userInfo.userIdx})}" class="link-dark d-inline-flex text-decoration-none rounded"> 글 작성하기</a>
 							</li>
 						</ul>
 					</div>
@@ -170,8 +170,8 @@
 		</div>
 		<div class="b-example-divider b-example-vr"></div>
 		<section id="contact" style="width: 100%; margin: auto;">
-			<p style="text-align: center; color: orange" class="eachTextAnime"><span th:text="${userInfo.userName}"></span>님 반가워요!</p>
-			<h1 class="fw-bolder" style="text-align: center;">자유게시판!!!</h1>
+			<p></p>
+			<p style="text-align: center; font-size: 23pt;" class="fw-bolder"><span th:text="${userInfo.userName}"></span>님이 작성한 글</p>
 			<div class="container px-4">
 				<div style="display: flex; align-items: center; justify-content: space-between;">
 					<div th:text="${info}" style="text-align: left;"></div>
@@ -180,6 +180,7 @@
 				</div>
 			</div>
 			<p/>
+			<input type="hidden" th:value="${userInfo.userIdx}">
 			<table class="table table-hover">
 				<thead>
 					<tr class="table-primary">
@@ -192,16 +193,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="selectList : ${selectList}" th:onclick="|location.href='@{/detail(idx=${selectList.idx})}'|" style="cursor: pointer;">
-						<th scope="row" style="text-align: center;" th:text="${selectList.idx}"></th>
-						<td th:text="${selectList.name}"  style="text-align: center;"></td>
+					<tr th:each="selectMyList : ${selectMyList}" th:onclick="|location.href='@{/detailMyPage(idx=${selectMyList.idx})}'|" style="cursor: pointer;">
+						<th scope="row" style="text-align: center;" th:text="${selectMyList.idx}"></th>
+						<td th:text="${selectMyList.name}"  style="text-align: center;"></td>
 						<td id="subject" style="text-align: center;">
-						    <span th:text="${#strings.length(selectList.subject) &gt; 10 ? #strings.substring(selectList.subject, 0, 10) + '...' : selectList.subject}"></span>
+						    <span th:text="${#strings.length(selectMyList.subject) &gt; 10 ? #strings.substring(selectMyList.subject, 0, 10) + '...' : selectMyList.subject}"></span>
 						</td>
 
-						<td th:text="${selectList.createDate}" style="text-align: center;"></td>
-						<td th:text="${selectList.updateDate}" style="text-align: center;"></td>
-						<td th:text="${selectList.viewCnt}" style="text-align: center;"></td>
+						<td th:text="${selectMyList.createDate}" style="text-align: center;"></td>
+						<td th:text="${selectMyList.updateDate}" style="text-align: center;"></td>
+						<td th:text="${selectMyList.viewCnt}" style="text-align: center;"></td>
 					</tr>
 				</tbody>
 			</table>
