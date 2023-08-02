@@ -76,6 +76,7 @@ public class UserController {
 		return "redirect:/signin";
 	}
 	
+	// 회원정보 수정
 	@GetMapping("/myPageEdit")
 	public String myPageEdit(Model model, HttpSession session) {
 	    UserVO userVO = (UserVO) session.getAttribute("user");
@@ -101,6 +102,7 @@ public class UserController {
 		}
 		return "redirect:/mainPage";
 	}
+	
 	// 글 관리
 	@GetMapping(value="/myList")
 	public String selectMyList(@RequestParam(defaultValue = "1") int c, @RequestParam(defaultValue = "10") int p, @RequestParam(defaultValue = "10")
