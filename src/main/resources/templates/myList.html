@@ -171,7 +171,10 @@
 		<div class="b-example-divider b-example-vr"></div>
 		<section id="contact" style="width: 100%; margin: auto;">
 			<p></p>
-			<p style="text-align: center; font-size: 23pt;" class="fw-bolder"><span th:text="${userInfo.userName}"></span>님이 작성한 글</p>
+			<div style="text-align: center;">
+				<i class="bi bi-pencil-square" style="font-size: 40pt;"></i>
+				<p style="font-size: 23pt;" class="fw-bolder"><span th:text="${userInfo.userName}"></span>님이 작성한 글</p>
+			</div>
 			<div class="container px-4">
 				<div style="display: flex; align-items: center; justify-content: space-between;">
 					<div th:text="${info}" style="text-align: left;"></div>

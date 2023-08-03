@@ -170,8 +170,10 @@
 		</div>
 		<div class="b-example-divider b-example-vr"></div>
 		<section id="contact" style="width: 100%; margin: auto;">
-			<p style="text-align: center; color: orange" class="eachTextAnime"><span th:text="${userInfo.userName}"></span>님 반가워요!</p>
-			<h1 class="fw-bolder" style="text-align: center;">자유게시판!!!</h1>
+			<div style="text-align: center;">
+				<p style="color: orange; font-size: 16pt;"><span th:text="${userInfo.userName}"></span>님 반가워요! <i class="bi bi-emoji-smile-fill"></i></p>
+				<h1 class="fw-bolder">자유게시판!!!</h1>
+			</div>
 			<div class="container px-4">
 				<div style="display: flex; align-items: center; justify-content: space-between;">
 					<div th:text="${info}" style="text-align: left;"></div>
