@@ -164,12 +164,12 @@
 		</div>
 		<div class="b-example-divider b-example-vr"></div>
         <section id="insertBoard" style="width: 100%; margin: auto;">
-        <h1 class="fw-bolder" style="text-align: center;">글 작성하기</h1>
-        <p></p>
         <div style="text-align: center;">
-	        <i class="bi bi-emoji-laughing" style="font-size: 50px; color: orange;"></i>
+	        <i class="bi bi-pencil-square" style="font-size: 40pt;"></i>
+	        <h1 class="fw-bolder">글 작성하기</h1>
         </div>
         <p></p>
+        <br/>
 		<div class="container px-4">
 			<div id="board" align="center">
 				<form class="was-validated" action="insertOk" method="post">
@@ -183,11 +183,11 @@
 					</div>
 					<div class="mb-3">
 						<input type="text" class="form-control" aria-label="subject" id="subject" name="subject" placeholder="제목을 입력해주세요" required>
-						<div class="invalid-feedback">제목은 필수 사항입니다</div>
+						<div class="invalid-feedback"><i class="bi bi-exclamation-triangle"></i> 제목은 필수 사항입니다</div>
 					</div>
 					<div class="mb-3">
 						<textarea class="form-control" id="content" name="content" placeholder="본문을 입력해주세요" required rows="10"></textarea>
-						<div class="invalid-feedback">본문은 필수 사항입니다</div>
+						<div class="invalid-feedback"><i class="bi bi-exclamation-triangle"></i> 본문은 필수 사항입니다</div>
 					</div>
 						<a th:href="@{/mainPage(userIdx=${userInfo.userIdx})}" class="btn btn-dark">취소하기</a>
 						<input type="submit" class="btn btn-primary" id="boardAdd" name="boardAdd" value="저장하기" onclick="return CheckInsert()">
